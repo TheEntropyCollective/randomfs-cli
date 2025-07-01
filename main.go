@@ -18,6 +18,7 @@ var (
 	dataDir   string
 	cacheSize int64
 	verbose   bool
+	noIPFS    bool
 )
 
 var rootCmd = &cobra.Command{
@@ -44,9 +45,19 @@ var storeCmd = &cobra.Command{
 		contentType := detectContentType(filename)
 
 		// Create RandomFS instance
-		rfs, err := randomfs.NewRandomFS(ipfsAPI, dataDir, cacheSize)
-		if err != nil {
-			log.Fatalf("Failed to initialize RandomFS: %v", err)
+		var rfs *randomfs.RandomFS
+		if noIPFS {
+			rfs, err = randomfs.NewRandomFSWithoutIPFS(dataDir, cacheSize)
+			if err != nil {
+				log.Fatalf("Failed to initialize RandomFS: %v", err)
+			}
+			log.Printf("RandomFS initialized without IPFS, data dir %s", dataDir)
+		} else {
+			rfs, err = randomfs.NewRandomFS(ipfsAPI, dataDir, cacheSize)
+			if err != nil {
+				log.Fatalf("Failed to initialize RandomFS: %v", err)
+			}
+			log.Printf("RandomFS initialized with IPFS at %s, data dir %s", ipfsAPI, dataDir)
 		}
 
 		// Store file
@@ -79,9 +90,18 @@ var retrieveCmd = &cobra.Command{
 		outputFile := args[1]
 
 		// Create RandomFS instance
-		rfs, err := randomfs.NewRandomFS(ipfsAPI, dataDir, cacheSize)
-		if err != nil {
-			log.Fatalf("Failed to initialize RandomFS: %v", err)
+		var rfs *randomfs.RandomFS
+		var err error
+		if noIPFS {
+			rfs, err = randomfs.NewRandomFSWithoutIPFS(dataDir, cacheSize)
+			if err != nil {
+				log.Fatalf("Failed to initialize RandomFS: %v", err)
+			}
+		} else {
+			rfs, err = randomfs.NewRandomFS(ipfsAPI, dataDir, cacheSize)
+			if err != nil {
+				log.Fatalf("Failed to initialize RandomFS: %v", err)
+			}
 		}
 
 		// Retrieve file
@@ -206,6 +226,7 @@ func init() {
 	rootCmd.PersistentFlags().StringVar(&dataDir, "data", "./data", "Data directory")
 	rootCmd.PersistentFlags().Int64Var(&cacheSize, "cache", 500*1024*1024, "Cache size in bytes")
 	rootCmd.PersistentFlags().BoolVarP(&verbose, "verbose", "v", false, "Verbose output")
+	rootCmd.PersistentFlags().BoolVar(&noIPFS, "no-ipfs", false, "Use RandomFS without IPFS")
 
 	// Add subcommands
 	rootCmd.AddCommand(storeCmd)
