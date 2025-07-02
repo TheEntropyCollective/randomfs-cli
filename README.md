@@ -34,10 +34,10 @@ Download the latest release for your platform from the [releases page](https://g
 randomfs-cli store example.txt
 
 # Retrieve a file using rfs:// URL
-randomfs-cli download rfs://QmX...abc/text/plain/example.txt
+randomfs-cli download rfs://QmX...abc
 
 # Parse a rfs:// URL
-randomfs-cli parse rfs://QmX...abc/text/plain/example.txt
+randomfs-cli parse rfs://QmX...abc
 
 # Show system statistics
 randomfs-cli stats
@@ -90,7 +90,7 @@ randomfs-cli download [rd-url] [flags]
 
 **Example:**
 ```bash
-randomfs-cli download rfs://QmX...abc/text/plain/example.txt --output myfile.txt
+randomfs-cli download rfs://QmX...abc --output myfile.txt
 ```
 
 ### parse
@@ -102,7 +102,7 @@ randomfs-cli parse [rd-url]
 
 **Example:**
 ```bash
-randomfs-cli parse rfs://QmX...abc/text/plain/example.txt
+randomfs-cli parse rfs://QmX...abc
 ```
 
 ### stats
@@ -157,7 +157,7 @@ randomfs-cli download rfs://QmX...abc/image/jpeg/photo.jpg --output my_photo.jpg
 randomfs-cli stats
 
 # Parse URL components
-randomfs-cli parse rfs://QmX...abc/text/plain/example.txt
+randomfs-cli parse rfs://QmX...abc
 
 # Verbose storage operation
 randomfs-cli store largefile.zip --verbose
