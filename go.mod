@@ -3,7 +3,7 @@ module github.com/TheEntropyCollective/randomfs-cli
 go 1.21
 
 require (
-	github.com/TheEntropyCollective/randomfs-core v0.1.3
+	github.com/TheEntropyCollective/randomfs-core v0.1.4
 	github.com/spf13/cobra v1.8.0
 )
 
