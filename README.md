@@ -4,13 +4,13 @@ A command-line interface for the Owner Free File System, providing easy access t
 
 ## Overview
 
-RandomFS CLI is a powerful command-line tool built with Cobra that provides full access to RandomFS functionality. Store files, retrieve them using rd:// URLs, and manage your decentralized file storage from the terminal.
+RandomFS CLI is a powerful command-line tool built with Cobra that provides full access to RandomFS functionality. Store files, retrieve them using rfs:// URLs, and manage your decentralized file storage from the terminal.
 
 ## Features
 
 - **File Storage**: Store files with automatic content type detection
-- **File Retrieval**: Download files using rd:// URLs
-- **URL Parsing**: Parse and validate rd:// URLs
+- **File Retrieval**: Download files using rfs:// URLs
+- **URL Parsing**: Parse and validate rfs:// URLs
 - **System Statistics**: View RandomFS system metrics
 - **Verbose Output**: Detailed logging for debugging
 - **Cross-platform**: Works on Windows, macOS, and Linux
@@ -33,11 +33,11 @@ Download the latest release for your platform from the [releases page](https://g
 # Store a file
 randomfs-cli store example.txt
 
-# Retrieve a file using rd:// URL
-randomfs-cli download rd://QmX...abc/text/plain/example.txt
+# Retrieve a file using rfs:// URL
+randomfs-cli download rfs://QmX...abc/text/plain/example.txt
 
-# Parse a rd:// URL
-randomfs-cli parse rd://QmX...abc/text/plain/example.txt
+# Parse a rfs:// URL
+randomfs-cli parse rfs://QmX...abc/text/plain/example.txt
 
 # Show system statistics
 randomfs-cli stats
@@ -78,7 +78,7 @@ randomfs-cli retrieve QmX...abc --output retrieved.pdf
 ```
 
 ### download
-Download a file using its rd:// URL.
+Download a file using its rfs:// URL.
 
 ```bash
 randomfs-cli download [rd-url] [flags]
@@ -90,11 +90,11 @@ randomfs-cli download [rd-url] [flags]
 
 **Example:**
 ```bash
-randomfs-cli download rd://QmX...abc/text/plain/example.txt --output myfile.txt
+randomfs-cli download rfs://QmX...abc/text/plain/example.txt --output myfile.txt
 ```
 
 ### parse
-Parse a rd:// URL and display its components.
+Parse a rfs:// URL and display its components.
 
 ```bash
 randomfs-cli parse [rd-url]
@@ -102,7 +102,7 @@ randomfs-cli parse [rd-url]
 
 **Example:**
 ```bash
-randomfs-cli parse rd://QmX...abc/text/plain/example.txt
+randomfs-cli parse rfs://QmX...abc/text/plain/example.txt
 ```
 
 ### stats
@@ -144,11 +144,11 @@ randomfs-cli store report.pdf --content-type application/pdf
 # Retrieve by hash
 randomfs-cli retrieve QmX...abc
 
-# Download by rd:// URL
-randomfs-cli download rd://QmX...abc/text/plain/readme.txt
+# Download by rfs:// URL
+randomfs-cli download rfs://QmX...abc/text/plain/readme.txt
 
 # Download with custom output name
-randomfs-cli download rd://QmX...abc/image/jpeg/photo.jpg --output my_photo.jpg
+randomfs-cli download rfs://QmX...abc/image/jpeg/photo.jpg --output my_photo.jpg
 ```
 
 ### System Management
@@ -157,7 +157,7 @@ randomfs-cli download rd://QmX...abc/image/jpeg/photo.jpg --output my_photo.jpg
 randomfs-cli stats
 
 # Parse URL components
-randomfs-cli parse rd://QmX...abc/text/plain/example.txt
+randomfs-cli parse rfs://QmX...abc/text/plain/example.txt
 
 # Verbose storage operation
 randomfs-cli store largefile.zip --verbose
