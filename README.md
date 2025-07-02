@@ -65,39 +65,53 @@ randomfs-cli store document.pdf --content-type application/pdf
 Retrieve a file by its representation hash.
 
 ```bash
-randomfs-cli retrieve [hash] [flags]
+randomfs-cli retrieve [hash] [output-file]
 ```
 
+**Arguments:**
+- `hash`: The representation hash of the file to retrieve
+- `output-file`: (Optional) Output file path (default: original filename from metadata)
+
 **Flags:**
-- `--output`: Output file path (default: original filename)
 - `--verbose`: Enable verbose output
 
-**Example:**
+**Examples:**
 ```bash
-randomfs-cli retrieve QmX...abc --output retrieved.pdf
+# Retrieve with original filename
+randomfs-cli retrieve QmX...abc
+
+# Retrieve with custom filename
+randomfs-cli retrieve QmX...abc retrieved.pdf
 ```
 
 ### download
 Download a file using its rfs:// URL.
 
 ```bash
-randomfs-cli download [rd-url] [flags]
+randomfs-cli download [rfs-url] [output-file]
 ```
 
+**Arguments:**
+- `rfs-url`: The rfs:// URL of the file to download
+- `output-file`: (Optional) Output file path (default: original filename from metadata)
+
 **Flags:**
-- `--output`: Output file path (default: original filename)
 - `--verbose`: Enable verbose output
 
-**Example:**
+**Examples:**
 ```bash
-randomfs-cli download rfs://QmX...abc --output myfile.txt
+# Download with original filename
+randomfs-cli download rfs://QmX...abc
+
+# Download with custom filename
+randomfs-cli download rfs://QmX...abc myfile.txt
 ```
 
 ### parse
 Parse a rfs:// URL and display its components.
 
 ```bash
-randomfs-cli parse [rd-url]
+randomfs-cli parse [rfs-url]
 ```
 
 **Example:**
@@ -144,11 +158,11 @@ randomfs-cli store report.pdf --content-type application/pdf
 # Retrieve by hash
 randomfs-cli retrieve QmX...abc
 
-# Download by rfs:// URL
-randomfs-cli download rfs://QmX...abc/text/plain/readme.txt
+# Download by rfs:// URL (uses original filename)
+randomfs-cli download rfs://QmX...abc
 
 # Download with custom output name
-randomfs-cli download rfs://QmX...abc/image/jpeg/photo.jpg --output my_photo.jpg
+randomfs-cli download rfs://QmX...abc my_photo.jpg
 ```
 
 ### System Management
