@@ -12,4 +12,4 @@ require (
 	github.com/spf13/pflag v1.0.5 // indirect
 )
 
-replace github.com/TheEntropyCollective/randomfs-core => ../randomfs-core/pkg/randomfs
+replace github.com/TheEntropyCollective/randomfs-core => ../randomfs-core
